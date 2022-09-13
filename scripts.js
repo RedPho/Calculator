@@ -5,7 +5,7 @@ let settedOperator;
 let operatorFunc;
 
 function sum(a, b) {
-  return a + b;
+  return parseInt(a) + parseInt(b);
 }
 
 function subtract(a, b) {
@@ -35,6 +35,10 @@ numbers.forEach((number) => number.addEventListener("click", function(){
   if (display.innerText == 0) {
     display.innerText = pressedNum;
   }
+  else if ((secondNumber == 0) && (firstNumber)){
+    secondNumber = number.id;
+    display.innerText = secondNumber;
+  }
   else{
     display.innerText += pressedNum;
   }
@@ -58,8 +62,28 @@ clearButton.addEventListener("click", function(){
 let operators = document.querySelectorAll(".operator");
 
 operators.forEach((operator) => operator.addEventListener("click", function(){
-  display.innerText = 0;
+  if (settedOperator) {
+    display.innerText = operate(operatorFunc, firstNumber, secondNumber);
+    firstNumber = parseInt(display.innerText);
+    secondNumber = 0;
+  
+  }
+  else{
+    display.innerText = "";
+  }
   settedOperator = operator.id;
+  setOperatorFunc();
+
+}))
+
+let equal = document.querySelector("#equal");
+equal.addEventListener("click", function(){
+  display.innerText = operate(operatorFunc, firstNumber, secondNumber);
+  settedOperator = undefined;
+  firstNumber = parseInt(display.innerText);
+})
+
+function setOperatorFunc() {
   if (settedOperator == "plus") {
     operatorFunc = sum;
   }
@@ -72,11 +96,4 @@ operators.forEach((operator) => operator.addEventListener("click", function(){
   if (settedOperator == "multiply") {
     operatorFunc = multiply;
   }
-}))
-
-let equal = document.querySelector("#equal");
-equal.addEventListener("click", function(){
-  display.innerText = operate(operatorFunc, firstNumber, secondNumber);
-  settedOperator = undefined;
-  firstNumber = parseInt(display.innerText);
-})
+}
