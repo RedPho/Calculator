@@ -18,6 +18,9 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
+  if (b == 0){
+    return "Error";
+  }
   return a / b;
 }
 
@@ -54,6 +57,7 @@ numbers.forEach((number) => number.addEventListener("click", function(){
 let clearButton = document.querySelector("#clear");
 clearButton.addEventListener("click", function(){
   location.reload();
+  return false;
 });
 
 let operators = document.querySelectorAll(".operator");
