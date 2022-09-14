@@ -53,11 +53,7 @@ numbers.forEach((number) => number.addEventListener("click", function(){
 
 let clearButton = document.querySelector("#clear");
 clearButton.addEventListener("click", function(){
-  display.innerText = 0;
-  settedOperator = 0;
-  secondNumber = 0;
-  firstNumber = 0;
-  actions.innerText = " ";
+  location.reload();
 });
 
 let operators = document.querySelectorAll(".operator");
